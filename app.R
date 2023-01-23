@@ -4,8 +4,17 @@ ui <- function(req) {
 
   par <- shiny::parseQueryString(req$QUERY_STRING)$t
 
-  if (is.null(par)) {
+  final <- try(
+    jose::jwt_decode_sig(par, pubkey = "www/key2.pem"),
+    # conforme https://firebase.google.com/docs/auth/admin/verify-id-tokens
+    TRUE)
+
+  if (is.null(par) | class(final)[1] == "try-error") {
     par <- "false"
+  } else {
+    if (final$iss == "https://securetoken.google.com/exemplo-4d8da") {
+      par <- "true"
+    }
   }
 
   if (par == "true") {
