@@ -15,8 +15,15 @@ login = function() {
 register = function() {
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
+  var nome = document.getElementById("name").value;
+  var adicional = document.getElementById("adicional").value;
   firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then(function(user){}).catch(function(error){
+  .then(function(user){
+    firebase.auth().currentUser.updateProfile({
+      displayName: nome,
+      department: adicional
+    })
+  }).catch(function(error){
     alert("Falha ao logar");
   });
 }
