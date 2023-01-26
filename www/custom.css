@@ -1,0 +1,14 @@
+.imagemcentralizada{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+body{
+  background-color: #003b4d;
+}
+
+.navbar.navbar-default {
+  background-color: #003B4D !important;
+}
