@@ -15,6 +15,8 @@ ui <- navbarPage(
                 bslib::card_image(file = "www/CIGA_Simbolo-Contorno-85.svg",
                                   width = "30%",
                                   class = "imagemcentralizada"),
+
+                # FAZER LOGIN
                 shiny::HTML("<center><h4>Bem-vindo</h4></center>"),
                 shiny::HTML("<center>Fazer login no CIGA</center>"),
                 shiny::br(),
@@ -22,9 +24,14 @@ ui <- navbarPage(
                 passwordInput("password", "Senha: ", width = "100%"),
                 actionButton("enviar", "Continuar", width = "100%", class = "btn-primary"),
                 shiny::br(), shiny::br(),
-                actionButton("esquecisenha", "Esqueceu a senha?", width = "58%", class = "btn-danger center"),
-                #shiny::br(),shiny::br(),
-                actionButton("registrar", "Registrar", width = "40%", class = "btn-secondary align-self-center")
+                actionButton("esquecisenha", "Esqueceu a senha?", width = "100%", class = "btn-danger center"),
+                shiny::br(),shiny::br(),
+                actionButton("registrar", "Registrar", width = "100%", class = "btn-secondary align-self-center")
+
+                # CADASTRE-SE
+
+
+
      )
     )
   )

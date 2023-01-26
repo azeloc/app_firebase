@@ -12,3 +12,13 @@ body{
 .navbar.navbar-default {
   background-color: #003B4D !important;
 }
+
+.btn-primary{
+  background-color: #003b4d;
+  border-color: #003b4d;
+}
+
+.btn-secondary {
+  background-color: #668994;
+  border-color: #668994;
+}

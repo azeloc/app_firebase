@@ -58,7 +58,7 @@ ui <- function(req) {
       )
     )
   } else {
-    shiny::tags$script(shiny::HTML('location.replace("login.html");'))
+    shiny::tags$script(shiny::HTML('location.replace("login-v2.html");'))
   }
 
 }
