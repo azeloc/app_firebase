@@ -1,23 +1,45 @@
 library(shiny)
 
+validar_token <- function(token) {
+  runner <- V8::v8()
+
+  runner$source("https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js")
+  runner$source("https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js")
+  runner$source("bundle.js")
+
+  runner$assign("idToken", token)
+
+  runner$source("init.js")
+  runner$source("verify.js")
+
+  runner$get("approved")
+}
+
 ui <- function(req) {
 
-  par <- shiny::parseQueryString(req$QUERY_STRING)$t
+  token <- shiny::parseQueryString(req$QUERY_STRING)$t
 
-  final <- try(
-    jose::jwt_decode_sig(par, pubkey = "www/key2.pem"),
-    # conforme https://firebase.google.com/docs/auth/admin/verify-id-tokens
-    TRUE)
+  # final <- try(
+  #   jose::jwt_decode_sig(par, pubkey = "www/key2.pem"),
+  #   # conforme https://firebase.google.com/docs/auth/admin/verify-id-tokens
+  #   TRUE)
 
-  if (is.null(par) | class(final)[1] == "try-error") {
-    par <- "false"
+  if (is.null(token)) {
+    approved <- "false"
   } else {
-    if (final$iss == "https://securetoken.google.com/exemplo-4d8da") {
-      par <- "true"
-    }
+    browser()
+    approved <- validar_token(par)
   }
 
-  if (par == "true") {
+  # if (is.null(par) | class(final)[1] == "try-error") {
+  #   par <- "false"
+  # } else {
+  #   if (final$iss == "https://securetoken.google.com/portfolio-25b63") {
+  #     par <- "true"
+  #   }
+  # }
+
+  if (approved == "true") {
     navbarPage(
       title = "Firebase",
       id = "menu_superior",
