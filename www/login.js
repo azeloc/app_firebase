@@ -8,7 +8,7 @@ login = function() {
       location.replace("http://127.0.0.1:4242/?t="+token)
 });
     }).catch(function(error){
-      alert("Falha ao logar");
+      alert("Erro ao fazer login. \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
     });
 }
 
@@ -24,6 +24,6 @@ register = function() {
       department: adicional
     })
   }).catch(function(error){
-    alert("Falha ao logar");
+      alert("Erro ao cadastrar. \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
   });
 }
