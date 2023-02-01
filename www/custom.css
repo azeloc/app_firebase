@@ -22,3 +22,10 @@ body{
   background-color: #668994;
   border-color: #668994;
 }
+
+
+.form-group i {
+  margin-left: -30px;
+  cursor: pointer;
+  display: inline
+}
