@@ -38,7 +38,7 @@ ui <- navbarPage(
 
 
                 # CADASTRE-SE
-                # shiny::HTML("<center><h4>Cadastre-se</h4></center>"),
+                # shiny::HTML("<center><h4>Solicitar cadastro</h4></center>"),
                 # shiny::HTML("<center>Fazer o cadastro no CIGA</center>"),
                 # shiny::br(),
                 # textInput("email", label = "Endereço de email: ", width = "100%"),
