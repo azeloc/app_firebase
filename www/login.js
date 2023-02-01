@@ -69,6 +69,8 @@ login = function() {
 
      if(codigoErro == "auth/user-not-found"){
        var mensagemErro = "Usuário não encontrado. Verifique se o email está correto. Se necessário, solicite o cadastro novamente.";
+     } else if(codigoErro == "auth/wrong-password"){
+       var mensagemErro = "Senha inválida.";
      } else {
         var mensagemErro = error.message;
         console.log(mensagemErro);
