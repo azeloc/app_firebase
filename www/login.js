@@ -82,7 +82,6 @@ login = function() {
 
 register = function() {
   var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
   var nome = document.getElementById("nome").value;
   var sobrenome = document.getElementById("sobrenome").value;
   var instituicao = document.getElementById("instituicao").value;
@@ -90,14 +89,13 @@ register = function() {
   if (validarEmail(email) && validarNome(nome) && validarSobrenome(sobrenome) &&
   validarInstituicao(instituicao)){
    console.log(email);
-   console.log(password);
    console.log(nome);
    console.log(sobrenome);
    console.log(instituicao);
 
    fetch("https://us-central1-exemplo-4d8da.cloudfunctions.net/criaUsuario?email="+email+"&nome="+nome+"&instituicao="+instituicao).then(function(response) {
   alert("Cadastro solicitado com sucesso. \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
-}).catch(function(error){
+}).catch(function(error) {
       console.log(error);
      var codigoErro = error.code;
      console.log(codigoErro);
@@ -112,7 +110,7 @@ register = function() {
      }
 
       alert("Erro ao solicitar cadastro: \n\n" + mensagemErro + " \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
-  });
+  });}
 }
 
 
