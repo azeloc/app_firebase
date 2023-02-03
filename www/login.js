@@ -3,7 +3,7 @@ function validarEmail(email) {
   var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   if (!email.match(validRegex)) {
-    alert("Endereço de e-mail inválido!");
+    swal("Erro", "Endereço de e-mail inválido!", "error");
     document.getElementById("email").focus();
     return false;
   } else {
@@ -14,7 +14,7 @@ function validarEmail(email) {
 
 function validarNome(valor) {
   if (valor.length == 0) {
-     alert("O campo Nome é obrigatório.");
+     swal("Erro", "O campo Nome é obrigatório.", "error");
      document.getElementById("nome").focus();
      return false;
   } else {
@@ -24,7 +24,7 @@ function validarNome(valor) {
 
 function validarSobrenome(valor) {
   if (valor.length == 0) {
-     alert("O campo Sobrenome é obrigatório.");
+     swal("Erro", "O campo Sobrenome é obrigatório.", "error");
      document.getElementById("sobrenome").focus();
      return false;
   } else {
@@ -34,7 +34,7 @@ function validarSobrenome(valor) {
 
 function validarInstituicao(valor) {
   if (valor.length == 0) {
-     alert("O campo Instituicao é obrigatório.");
+     swal("Erro", "O campo Instituição é obrigatório.", "error");
      document.getElementById("instituicao").focus();
      return false;
   } else {
@@ -64,7 +64,7 @@ login = function() {
         console.log(mensagemErro);
      }
 
-      alert("Erro ao fazer login: \n\n" + mensagemErro + " \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
+      swal("Erro ao fazer login", mensagemErro + " \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ", "error");
     });
 }
 
@@ -82,7 +82,7 @@ register = function() {
    console.log(instituicao);
 
    fetch("https://us-central1-exemplo-4d8da.cloudfunctions.net/criaUsuario?email="+email+"&nome="+nome+"&instituicao="+instituicao).then(function(response) {
-  alert("Cadastro solicitado com sucesso. \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
+  swal("Cadastro solicitado com sucesso", "Caso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ", "success");
 }).catch(function(error) {
       console.log(error);
      var codigoErro = error.code;
@@ -97,10 +97,10 @@ register = function() {
         console.log(mensagemErro);
      }
 
-      alert("Erro ao solicitar cadastro: \n\n" + mensagemErro + " \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
+      swal("Erro ao solicitar cadastro", mensagemErro + " \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ", "error");
   });}
 }
-}
+
 
 
 resetPassword = function() {
@@ -109,10 +109,10 @@ resetPassword = function() {
 
   if(validarEmail(email)){
     console.log(email);
-    
+
     firebase.auth().sendPasswordResetEmail(email).
     then(function(){
-      alert("Confira o seu email para criar uma nova senha!")
+      swal("", "Confira o seu email para criar uma nova senha!", "info")
     }).catch(function(error){
      var codigoErro = error.code;
      console.log(codigoErro);
@@ -126,7 +126,7 @@ resetPassword = function() {
         console.log(mensagemErro);
      }
 
-      alert("Erro ao enviar email para criar nova senha: \n\n" + mensagemErro + " \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
+      swal("Erro", mensagemErro + " \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ", "error");
     });
   }
 }
