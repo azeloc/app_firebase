@@ -42,18 +42,6 @@ function validarInstituicao(valor) {
   }
 }
 
-function gerarSenha() {
-      var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJLMNOPQRSTUVWXYZ!@#$%^&*()+?><:{}[]";
-      var passwordLength = 16;
-      var password = "";
-
-      for (var i = 0; i < passwordLength; i++) {
-        var randomNumber = Math.floor(Math.random() * chars.length);
-        password += chars.substring(randomNumber, randomNumber + 1);
-      }
-     password
-}
-
 
 login = function() {
   var email = document.getElementById("email").value;
@@ -82,7 +70,6 @@ login = function() {
 
 register = function() {
   var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
   var nome = document.getElementById("nome").value;
   var sobrenome = document.getElementById("sobrenome").value;
   var instituicao = document.getElementById("instituicao").value;
@@ -90,7 +77,6 @@ register = function() {
   if (validarEmail(email) && validarNome(nome) && validarSobrenome(sobrenome) &&
   validarInstituicao(instituicao)){
    console.log(email);
-   console.log(password);
    console.log(nome);
    console.log(sobrenome);
    console.log(instituicao);
@@ -114,5 +100,33 @@ register = function() {
       alert("Erro ao solicitar cadastro: \n\n" + mensagemErro + " \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
   });
 }
+}
 
 
+resetPassword = function() {
+  var email = document.getElementById("email").value;
+  console.log(email);
+
+  if(validarEmail(email)){
+    console.log(email);
+    
+    firebase.auth().sendPasswordResetEmail(email).
+    then(function(){
+      alert("Confira o seu email para criar uma nova senha!")
+    }).catch(function(error){
+     var codigoErro = error.code;
+     console.log(codigoErro);
+
+     if(codigoErro == "auth/user-not-found"){
+       var mensagemErro = "Usuário não encontrado. Verifique se o email está correto. Se necessário, solicite o cadastro novamente.";
+     } else if(codigoErro == "auth/invalid-email"){
+       var mensagemErro = "Email inválido.";
+     } else {
+        var mensagemErro = error.message;
+        console.log(mensagemErro);
+     }
+
+      alert("Erro ao enviar email para criar nova senha: \n\n" + mensagemErro + " \n\nCaso seja necessário, entre em contato através do email: contato@ciga-mpmg.com.br ");
+    });
+  }
+}

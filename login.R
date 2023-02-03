@@ -60,7 +60,7 @@ ui <- navbarPage(
                shiny::br(),
                textInput("email", label = "Endereço de email: ", width = "100%"),
                shiny::br(),shiny::br(),
-               actionButton("forgetpassword", "Recuperar a senha", width = "100%", class = "btn-primary", onclick = "forgetpassword()"),
+               actionButton("forgetpassword", "Recuperar a senha", width = "100%", class = "btn-primary", onclick = "resetPassword()"),
                shiny::br(), shiny::br(),
                shiny::actionButton("voltar", "Voltar", width = "100%",
                                    class = "btn-secondary align-self-center", onclick = "history.back()")
